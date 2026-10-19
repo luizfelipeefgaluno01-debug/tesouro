@@ -1,0 +1,133 @@
+/* Importando uma fonte futurista de videogame */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ==========================================
+   ANIMACÕES (@KEYFRAMES)
+   ========================================== */
+
+/* 1. Animação para movimentar as luzes neon do fundo */
+@keyframes luzesFundo {
+    0% {
+        background-position: 0% 0%, 100% 100%;
+    }
+    50% {
+        background-position: 100% 100%, 0% 0%;
+    }
+    100% {
+        background-position: 0% 0%, 100% 100%;
+    }
+}
+
+/* 2. Animação de flutuação suave para a mensagem */
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 3. Animação de brilho e pulso neon para as bordas */
+@keyframes piscarNeon {
+    0%, 100% {
+        border-color: #ff007f;
+        box-shadow: 0 0 15px rgba(255, 0, 127, 0.6), inset 0 0 10px rgba(255, 0, 127, 0.2);
+    }
+    50% {
+        border-color: #00f5d4;
+        box-shadow: 0 0 25px rgba(0, 245, 212, 0.8), inset 0 0 15px rgba(0, 245, 212, 0.4);
+    }
+}
+
+/* 4. Animação de vibração rápida quando o botão é focado */
+@keyframes tremorBotao {
+    0% { transform: scale(1.08) rotate(0deg); }
+    25% { transform: scale(1.08) rotate(-2deg); }
+    75% { transform: scale(1.08) rotate(2deg); }
+    100% { transform: scale(1.08) rotate(0deg); }
+}
+
+/* ==========================================
+   ESTILOS GERAIS
+   ========================================== */
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    background-color: #0b0f19;
+    /* Fundo escuro com luzes neon animadas */
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 127, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 245, 212, 0.3) 0%, transparent 40%);
+    background-size: 150% 150%;
+    animation: luzesFundo 12s ease-in-out infinite;
+    color: #00f5d4;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Caixa de texto com animações de flutuação e brilho neon */
+#msg {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ffee00;
+    background: #161b26;
+    margin-bottom: 30px;
+    padding: 15px 25px;
+    border-radius: 6px;
+    border: 2px solid #ff007f;
+    text-shadow: 2px 2px 0px #000;
+    text-align: center;
+    text-transform: uppercase;
+    
+    /* Aplicando os keyframes de flutuar e piscar */
+    animation: 
+        flutuar 3s ease-in-out infinite,
+        piscarNeon 4s ease-in-out infinite;
+}
+
+/* Tabuleiro principal */
+#mapa {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 10px;
+    background-color: #121824;
+    padding: 16px;
+    border-radius: 8px;
+    border: 3px solid #00f5d4;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.4), inset 0 0 15px rgba(0, 245, 212, 0.1);
+}
+
+/* Botões do jogo */
+button {
+    width: 60px;
+    height: 60px;
+    background-color: #1a233a;
+    color: #ff007f;
+    border: 2px solid #ff007f;
+    border-radius: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito ao passar o mouse com tremor e brilho intenso */
+button:hover {
+    background-color: #ff007f;
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.9);
+    animation: tremorBotao 0.3s ease-in-out infinite;
+}
+
+/* Efeito ao clicar */
+button:active {
+    transform: scale(0.92);
+    box-shadow: 0 0 5px rgba(255, 0, 127, 0.5);
+}
